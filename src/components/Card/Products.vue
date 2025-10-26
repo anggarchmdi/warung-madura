@@ -3,10 +3,11 @@
     <div class="w-full overflow-hidden relative ">
       <img :src="img" alt="" class="h-[177px] w-[200px] rounded-lg object-cover">
       <button
+      title="delete?"
         @click="showDeleteModal = true"
-        class="absolute bottom-2 right-2 bg-white rounded-md shadow p-1 hover:bg-red-50"
+        class="absolute bottom-2 right-2 w-6 h-6 flex justify-center items-center transition-all transform hover:scale-90 duration-300 bg-white rounded-md shadow p-0.5"
       >
-        <i class="ri-delete-bin-6-line text-red-500 text-lg"></i>
+        <i class="ri-delete-bin-6-line text-red-500 w-4 h-4 bg-white/50 rounded-sm text-xs"></i>
       </button>
     </div>
     <p class="font-medium font-Plus-Jakarta-Sans pt-2 ">{{ title }}</p>
@@ -25,13 +26,15 @@
         v-if="showDeleteModal"
         class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
       >
-        <div class="bg-white w-[380px] rounded-2xl p-6 shadow-xl">
-          <div class="flex flex-col items-center text-center">
-            <div
-              class="w-16 h-16 flex items-center justify-center bg-red-100 rounded-full mb-3"
-            >
-              <i class="ri-delete-bin-6-line text-red-500 text-3xl"></i>
+        <div class="bg-white w-[442px] rounded-2xl p-6 shadow-xl">
+          <div class="flex flex-col items-center">
+            <div class="relative w-16 h-16 bg-Red-100 rounded-full flex justify-center items-center">
+              <div
+              class="absolute w-12 h-12 flex items-center justify-center bg-[#FF2928] rounded-full"
+              >
+              <i class="ri-delete-bin-6-line text-white text-3xl"></i>
             </div>
+          </div>
             <h2 class="text-xl font-semibold mb-2">Hapus Produk</h2>
             <p class="text-gray-600 mb-6">
               Apakah Anda yakin ingin menghapus produk ini?
