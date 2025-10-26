@@ -25,11 +25,35 @@
            </span>
           </p>
         <div class="w-0.5 bg-Grayscale-200 h-12"></div>
-        <div class="min-w-[97px] h-[48px] gap-2 flex justify-center items-center">
+        <!-- <div class="min-w-[97px] h-[48px] gap-2 flex justify-center items-center">
           <img :src="user?.profile_picture || Avatar"
           class="w-12 h-12 rounded-full" alt="">
           <p class="text-sm font-medium text-gray-700">{{ user?.name || 'Guest' }}</p>
-        </div>
+        </div> -->
+
+        <div class="relative">
+  <div
+    @click="toggleProfileDropdown"
+    class="min-w-[97px] h-[48px] gap-2 flex justify-center items-center cursor-pointer select-none"
+  >
+    <img :src="user?.profile_picture || Avatar" class="w-12 h-12 rounded-full" alt="">
+    <p class="text-sm font-medium text-gray-700">{{ user?.name || 'Guest' }}</p>
+  </div>
+        <!-- Dropdown -->
+        <transition name="fade">
+          <div
+            v-if="showProfileDropdown"
+            class="absolute right-0 mt-2 w-40 bg-white border rounded-xl shadow-lg py-2"
+          >
+            <button
+              @click="logout"
+              class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >
+              Logout
+            </button>
+          </div>
+        </transition>
+      </div>
       </div>
     </div>
 
@@ -92,6 +116,7 @@ import { storeToRefs } from "pinia";
 import { useCartStore } from "../../stores/home/cart.store";
 import { useProductStore } from "../../stores/home/product.store";
 import Avatar from '../../assets/profil/avatar.jpeg'
+import { toast } from "vue3-toastify";
 
 const showLeftArrow = ref(false);
 const showRightArrow = ref(false);
@@ -161,6 +186,21 @@ const goToAddProduct = () => {
 const goToAddCart = () => {
   router.push('/cart')
 }
+
+const showProfileDropdown = ref(false);
+
+const toggleProfileDropdown = () => {
+  showProfileDropdown.value = !showProfileDropdown.value;
+};
+
+
+const logout = () => {
+  setTimeout(() => {
+    const auth = useAuthStore();
+    auth.logout();
+    router.push("/login");
+  }, 1000);
+};
 
 </script>
 
