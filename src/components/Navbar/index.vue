@@ -20,7 +20,7 @@
           </p>
         <div class="w-0.5 bg-Grayscale-200 h-12"></div>
         <div class="min-w-[97px] h-[48px] gap-2 flex justify-center items-center">
-          <img :src="user?.profile_picture || '/https://www.google.com/url?sa=i&url=https%3A%2F%2Fid.pinterest.com%2Fpin%2F70861394132126361%2F&psig=AOvVaw1hJBNQ-JCrWUdJguz-HpsY&ust=1761486839387000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCPD9iP-_v5ADFQAAAAAdAAAAABAL'"
+          <img :src="user?.profile_picture || Avatar"
           class="w-12 h-12 rounded-full" alt="">
           <p class="text-sm font-medium text-gray-700">{{ user?.name || 'Guest' }}</p>
         </div>
@@ -85,6 +85,7 @@ import { useAuthStore } from "../../stores/auth.store";
 import { storeToRefs } from "pinia";
 import { useCartStore } from "../../stores/home/cart.store";
 import { useProductStore } from "../../stores/home/product.store";
+import Avatar from '../../assets/profil/avatar.jpeg'
 
 const showLeftArrow = ref(false);
 const showRightArrow = ref(false);
