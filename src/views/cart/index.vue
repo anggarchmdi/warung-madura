@@ -115,7 +115,9 @@ const bayar = () => {
   // Simpan total dan lanjut ke halaman pembayaran
   localStorage.setItem("totalPrice", total);
   cartStore.clearCart();
-  router.push("/payments");
+  setTimeout(() => {
+    router.push("/payments");
+  }, 1500)
 };
 </script>
 

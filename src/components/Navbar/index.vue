@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full bg-white fixed top-0 flex flex-col justify-center items-center" :class="isHome ? 'h-[160px]' : 'h-[75px]'"
+    class="w-full bg-white fixed z-50 top-0 flex flex-col justify-center items-center" :class="isHome ? 'h-[160px]' : 'h-[75px]'"
   >
     <div class="w-full h-full bg-white flex justify-between items-center">
       <div @click="goToHome" class="flex justify-start items-center font-bold hover:cursor-pointer text-Blue-600 text-xl px-8 font-Montserrat">
@@ -10,8 +10,14 @@
       <div class="flex justify-end ml-auto items-center p-4 pr-8 gap-4">
         <ButtonPrimary @click="goToAddCategory" class="flex justify-center items-center p-2 h-12">+ Tambah Kategori</ButtonPrimary>
         <ButtonPrimary @click="goToAddProduct" class="flex justify-center items-center p-2 h-12">+ Tambah Produk</ButtonPrimary>
-        <buttonPrimary @click="goToAddCart" class="flex justify-center items-center p-2 h-12"><i class="ri-shopping-cart-line"></i>
-        </buttonPrimary>
+        <div class="relative">
+          <buttonPrimary @click="goToAddCart" class="flex justify-center items-center p-2 h-12">
+            <i class="ri-shopping-cart-line"></i>
+            <span v-if="cartStore.cartItems.length > 0"  class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5" >
+              {{ cartStore.cartItems.length }}
+            </span>
+          </buttonPrimary>
+        </div>
           <p v-if="isCart" class="text-xs bg-Blue-50 h-12 flex justify-center items-center  px-4 rounded-lg text-Blue-500">
            Total Tagihan
            <span class="font-bold ml-2">
@@ -19,11 +25,35 @@
            </span>
           </p>
         <div class="w-0.5 bg-Grayscale-200 h-12"></div>
-        <div class="min-w-[97px] h-[48px] gap-2 flex justify-center items-center">
+        <!-- <div class="min-w-[97px] h-[48px] gap-2 flex justify-center items-center">
           <img :src="user?.profile_picture || Avatar"
           class="w-12 h-12 rounded-full" alt="">
           <p class="text-sm font-medium text-gray-700">{{ user?.name || 'Guest' }}</p>
-        </div>
+        </div> -->
+
+        <div class="relative">
+  <div
+    @click="toggleProfileDropdown"
+    class="min-w-[97px] h-[48px] gap-2 flex justify-center items-center cursor-pointer select-none"
+  >
+    <img :src="user?.profile_picture || Avatar" class="w-12 h-12 rounded-full" alt="">
+    <p class="text-sm font-medium text-gray-700">{{ user?.name || 'Guest' }}</p>
+  </div>
+        <!-- Dropdown -->
+        <transition name="fade">
+          <div
+            v-if="showProfileDropdown"
+            class="absolute right-0 mt-2 w-40 bg-white border rounded-xl shadow-lg py-2"
+          >
+            <button
+              @click="logout"
+              class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >
+              Logout
+            </button>
+          </div>
+        </transition>
+      </div>
       </div>
     </div>
 
@@ -86,6 +116,7 @@ import { storeToRefs } from "pinia";
 import { useCartStore } from "../../stores/home/cart.store";
 import { useProductStore } from "../../stores/home/product.store";
 import Avatar from '../../assets/profil/avatar.jpeg'
+import { toast } from "vue3-toastify";
 
 const showLeftArrow = ref(false);
 const showRightArrow = ref(false);
@@ -118,7 +149,10 @@ watch([search, selectedCategory], ([searchVal, categoryVal]) => {
 });
 
 const isHome = computed(() => route.name === "home");
-const isCart = computed(() => route.name === "cart")
+const isCart = computed(() =>
+  ["/cart", "/category/add", "/product/add"].includes(route.path)
+);
+
 // const user = computed(() => useAuthStore.user)
 const {user} = storeToRefs(useAuthStore());
 
@@ -152,6 +186,21 @@ const goToAddProduct = () => {
 const goToAddCart = () => {
   router.push('/cart')
 }
+
+const showProfileDropdown = ref(false);
+
+const toggleProfileDropdown = () => {
+  showProfileDropdown.value = !showProfileDropdown.value;
+};
+
+
+const logout = () => {
+  setTimeout(() => {
+    const auth = useAuthStore();
+    auth.logout();
+    router.push("/login");
+  }, 1000);
+};
 
 </script>
 
