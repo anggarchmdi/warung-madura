@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full bg-white fixed top-0 flex flex-col justify-center items-center" :class="isHome ? 'h-[160px]' : 'h-[75px]'"
+    class="w-full bg-white fixed z-50 top-0 flex flex-col justify-center items-center" :class="isHome ? 'h-[160px]' : 'h-[75px]'"
   >
     <div class="w-full h-full bg-white flex justify-between items-center">
       <div @click="goToHome" class="flex justify-start items-center font-bold hover:cursor-pointer text-Blue-600 text-xl px-8 font-Montserrat">
@@ -10,8 +10,14 @@
       <div class="flex justify-end ml-auto items-center p-4 pr-8 gap-4">
         <ButtonPrimary @click="goToAddCategory" class="flex justify-center items-center p-2 h-12">+ Tambah Kategori</ButtonPrimary>
         <ButtonPrimary @click="goToAddProduct" class="flex justify-center items-center p-2 h-12">+ Tambah Produk</ButtonPrimary>
-        <buttonPrimary @click="goToAddCart" class="flex justify-center items-center p-2 h-12"><i class="ri-shopping-cart-line"></i>
-        </buttonPrimary>
+        <div class="relative">
+          <buttonPrimary @click="goToAddCart" class="flex justify-center items-center p-2 h-12">
+            <i class="ri-shopping-cart-line"></i>
+            <span v-if="cartStore.cartItems.length > 0"  class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5" >
+              {{ cartStore.cartItems.length }}
+            </span>
+          </buttonPrimary>
+        </div>
           <p v-if="isCart" class="text-xs bg-Blue-50 h-12 flex justify-center items-center  px-4 rounded-lg text-Blue-500">
            Total Tagihan
            <span class="font-bold ml-2">
