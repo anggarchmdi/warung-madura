@@ -14,7 +14,7 @@ export const useAuthStore = defineStore({
     }),
     actions: {
         async login(data) {
-            const user = await axiosWrapper.post(`${baseUrl}/login`, data, true);
+            const user = await axiosWrapper.post(`${baseUrl}/api/v1/login`, data, true);
 
             if (user.status == 200) {
                 this.user = user.data;
@@ -25,7 +25,7 @@ export const useAuthStore = defineStore({
             }
         },
         async register(data) {
-            let register = await axiosWrapper.post(`${baseUrl}/register`, data, true);
+            let register = await axiosWrapper.post(`${baseUrl}/api/v1//register`, data, true);
 
             if (register) {
                 router.push('/login');

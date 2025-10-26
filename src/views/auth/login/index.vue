@@ -1,22 +1,18 @@
 <template>
-  <h1 class="font-semibold text-lg">Login Page</h1>
-  <form action="" @submit.prevent="login">
-    <div class="mb-6">
-        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 ">Email address</label>
-        <input v-model="formData.email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="john.doe@company.com" required>
-    </div>
-    <div class="mb-6">
-        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-        <input v-model="formData.password" type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="•••••••••" required>
-    </div>
-    <ButtonPrimary :type="'submit'">
-      Login
-    </ButtonPrimary>
-    <ButtonDanger @click="$router.push('/register')" class="ml-3">
-      Register
-    </ButtonDanger>
-  </form>
+  <div class="w-full h-screen p-10 flex ">
+    <!-- kiri -->
+    <div class="flex flex-1 ">
 
+    </div>
+    <!-- kanan -->
+    <div class="w-[558px] flex flex-col justify-center">
+      <form @submit.prevent="login">
+        <InputText label="username" placeholder="masukkan nama" v-model="formData.email" type="text" />
+        <InputText label="password" placeholder="masukkan password" v-model="formData.password" type="password" />
+        <ButtonPrimary type="submit">Masuk</ButtonPrimary>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>

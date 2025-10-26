@@ -1,5 +1,5 @@
 <template>
-  <button class="bg-red-400 p-2 rounded-md text-white hover:bg-red-500" :type="type">
+  <button class=" px-6 rounded-lg text-Blue-600" :type="type">
     <slot/>
   </button>
 </template>
@@ -14,5 +14,3 @@ export default {
   }
 }
 </script>
-
-

@@ -1,23 +1,27 @@
 <template>
-  <h1 class="font-semibold text-lg">Home Page</h1>
-  <h1>{{ counterStore.count }}</h1>
-  <button class="bg-blue-400 p-2 rounded-md text-white hover:bg-blue-500"
-    @click="counterStore.increment()">Increment</button>
-  <button class="bg-blue-400 p-2 rounded-md text-white hover:bg-blue-500 ml-1"
-    @click="counterStore.decrement()">Decrement</button>
+  <div class="py-36 min-h-screen">
+    <div class="grid grid-cols-6 gap-x-6 gap-y-6">
+      <div v-for="item in productStore.filteredProducts" :key="item.id">
+        <CardProducts
+          :title="item.name"
+          :price="item.price"
+          :img="item.picture_url"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
-<script>
-  import {
-    useCounterStore
-  } from "@/stores/counter.store.js"
+<script setup>
+import { onMounted } from "vue";
+import { useCategoryStore } from "../../stores/home/category.store";
+import { useProductStore } from "../../stores/home/product.store";
 
-  export default {
-    data() {
-      return {
-        counterStore: useCounterStore()
-      }
-    }
-  }
+const categoryStore = useCategoryStore();
+const productStore = useProductStore();
 
+onMounted(() => {
+  categoryStore.fetch();
+  productStore.fetch();
+});
 </script>
