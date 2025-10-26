@@ -67,7 +67,11 @@
         </RouterLink>
         <button
           @click="bayar"
-          class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          :disabled="cartStore.cartItems.length === 0"
+          class="px-5 py-2 rounded-lg text-white transition-colors"
+          :class="cartStore.cartItems.length === 0
+            ? 'bg-gray-400 cursor-not-allowed'
+            : 'bg-blue-600 hover:bg-blue-700'"
         >
           Bayar
         </button>
@@ -80,13 +84,38 @@
 <script setup>
 import { useCartStore } from "@/stores/home/cart.store";
 import { useRouter } from "vue-router";
+import { toast } from "vue3-toastify";
+
 const cartStore = useCartStore();
 const router = useRouter();
 
 const bayar = () => {
+  if (cartStore.cartItems.length === 0) {
+    toast.error("Keranjang masih kosong!", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 2000,
+    });
+    return;
+  }
+
   const total = cartStore.totalPrice;
+  if (total <= 0) {
+    toast.error("Total belanja tidak valid.", {
+      position: toast.POSITION.BOTTOM_RIGHT,
+      autoClose: 2000,
+    });
+    return;
+  }
+
+  toast.success("Pembayaran diproses!", {
+    position: toast.POSITION.BOTTOM_RIGHT,
+    autoClose: 1500,
+  });
+
+  // Simpan total dan lanjut ke halaman pembayaran
   localStorage.setItem("totalPrice", total);
   cartStore.clearCart();
   router.push("/payments");
 };
 </script>
+
