@@ -1,6 +1,12 @@
 <template>
   <div class="py-36 min-h-screen">
-    <div class="grid grid-cols-6 gap-x-6 gap-y-6">
+    <div class="grid
+                grid-cols-2
+                sm:grid-cols-3
+                md:grid-cols-4
+                lg:grid-cols-5
+                xl:grid-cols-6
+                gap-x-6 gap-y-6">
       <!-- <div v-for="item in productStore.filteredProducts" :key="item.id"> -->
         <CardProduct
           v-for="product in productStore.filteredProducts"

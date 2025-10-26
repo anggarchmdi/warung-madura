@@ -22,7 +22,7 @@
         </template>
         <template v-else>
           <i class="ri-add-circle-fill text-Blue-500 text-[1.5rem]"></i>
-          <p class="text-xs text-Grayscale-950 font-Plus-Jakarta-Sans font-medium">Seret & Letakkan atau <span class="text-blue-600 font-medium">Pilih File</span> untuk di unggah</p>
+          <p class="text-xs text-Grayscale-950 font-Plus-Jakarta-Sans font-medium px-8 md:px-0">Seret & Letakkan atau <span class="text-blue-600 font-medium">Pilih File</span> untuk di unggah</p>
           <p class="text-xs text-Grayscale-700">Format yang didukung: jpg, png</p>
         </template>
         <input
@@ -70,13 +70,13 @@
     <div class="w-full h-[96px] rounded-b-2xl px-6 flex justify-between items-center border-t">
       <ButtonSecondary
         @click="resetForm"
-        class="w-[185px] h-[48px] text-[16px] py-2 border-Blue-500 border"
+        class="2xl:w-[185px] h-[48px] text-[16px] py-2 border-Blue-500 border"
       >
         Batal
       </ButtonSecondary>
       <ButtonPrimary
         @click="submitForm"
-        class="w-[185px] h-[48px] text-[16px]"
+        class="2xl:w-[185px] h-[48px] text-[16px]"
       >
         Tambah
       </ButtonPrimary>

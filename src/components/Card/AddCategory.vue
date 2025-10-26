@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[442px] bg-white rounded-2xl px-6 py-4 shadow">
+  <div class="sm:w-[90%] md:w-[480px] lg:w-[520px] 2xl:w-[442px] bg-white rounded-2xl px-6 py-4 shadow">
     <div class="flex justify-start items-center mb-4">
       <p class="text-[20px] font-medium font-Plus-Jakarta-Sans">Tambah Kategori</p>
     </div>

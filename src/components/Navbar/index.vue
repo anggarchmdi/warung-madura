@@ -7,18 +7,20 @@
         MASPOS
       </div>
 
-      <div class="flex justify-end ml-auto items-center p-4 pr-8 gap-4">
+     <div class="flex justify-end ml-auto items-center p-4 pr-8 gap-4">
+      <div class="hidden md:flex">
         <ButtonPrimary @click="goToAddCategory" class="flex justify-center items-center p-2 h-12">+ Tambah Kategori</ButtonPrimary>
         <ButtonPrimary @click="goToAddProduct" class="flex justify-center items-center p-2 h-12">+ Tambah Produk</ButtonPrimary>
+      </div>
         <div class="relative">
-          <buttonPrimary @click="goToAddCart" class="flex justify-center items-center p-2 h-12">
+          <buttonPrimary @click="goToAddCart" class="flex justify-center items-center 2xl:p-2 2xl:h-12 hover:bg-transparent text-black bg-transparent md:bg-Blue-500">
             <i class="ri-shopping-cart-line"></i>
-            <span v-if="cartStore.cartItems.length > 0"  class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5" >
+            <span v-if="cartStore.cartItems.length > 0"  class="absolute -top-1 -right-1 bg-red-500 sm:text-black md:text-white text-xs font-bold rounded-full px-1.5 py-0.5" >
               {{ cartStore.cartItems.length }}
             </span>
           </buttonPrimary>
         </div>
-          <p v-if="isCart" class="text-xs bg-Blue-50 h-12 flex justify-center items-center  px-4 rounded-lg text-Blue-500">
+          <p v-if="isCart" class="text-xs bg-Blue-50 hidden  h-12 md:flex flex-col justify-center items-center  px-4 rounded-lg text-Blue-500">
            Total Tagihan
            <span class="font-bold ml-2">
              Rp {{ cartStore.totalPrice.toLocaleString() }}
@@ -36,18 +38,18 @@
     @click="toggleProfileDropdown"
     class="min-w-[97px] h-[48px] gap-2 flex justify-center items-center cursor-pointer select-none"
   >
-    <img :src="user?.profile_picture || Avatar" class="w-12 h-12 rounded-full" alt="">
+    <img :src="user?.profile_picture || Avatar" class="md:w-12 w-8 h-8 md:h-12 rounded-full" alt="">
     <p class="text-sm font-medium text-gray-700">{{ user?.name || 'Guest' }}</p>
   </div>
         <!-- Dropdown -->
         <transition name="fade">
           <div
             v-if="showProfileDropdown"
-            class="absolute right-0 mt-2 w-40 bg-white border rounded-xl shadow-lg py-2"
+            class="absolute right-0 mt-2 w-40 bg-white transition-all transform hover:scale-95 duration-300 border rounded-xl shadow-lg py-2 z-10"
           >
             <button
               @click="logout"
-              class="w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+              class="w-full text-left px-4 text-gray-700"
             >
               Logout
             </button>
@@ -62,7 +64,7 @@
          <hr class="border-t border-gray-200 w-full" />
         </div>
         <!-- search -->
-        <div  v-if="isHome" class="w-full h-full px-8 flex gap-4 items-center">
+        <div  v-if="isHome" class="w-full h-full px-8 flex flex-col md:flex-row gap-4 items-center">
           <div class="relative w-full max-w-xs bg-[#EDF0F2] rounded-lg">
             <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-Blue-500 text-[18px]"></i>
             <InputFilter
@@ -71,11 +73,11 @@
             placeholder="Cari nama produk ..." />
           </div>
           <!-- button category -->
-          <div class="w-full h-full flex justify-start px-8 items-center gap-4">
+          <div class="w-full h-full flex justify-start px-8 mb-2 md:mb-0 items-center gap-4">
             <button
             @click="scrollLeft"
             v-if="showLeftArrow"
-            class="absolute left-80 z-10 bg-white shadow-md p-2 rounded-full">
+            class="absolute 2xl:left-80 left-0 z-10 bg-white shadow-md p-2 rounded-full">
               <i class="ri-arrow-left-s-line text-xl text-gray-600"></i>
             </button>
             <div ref="categoryContainer"
@@ -89,7 +91,6 @@
             >
               Semua
             </ButtonSecondary>
-
               <ButtonSecondary v-for="item in categoryStore.categories"
               :key="item.id"
               @click="selectedCategory = item.id"
