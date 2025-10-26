@@ -124,7 +124,10 @@ watch([search, selectedCategory], ([searchVal, categoryVal]) => {
 });
 
 const isHome = computed(() => route.name === "home");
-const isCart = computed(() => route.name === "cart")
+const isCart = computed(() =>
+  ["/cart", "/category/add", "/product/add"].includes(route.path)
+);
+
 // const user = computed(() => useAuthStore.user)
 const {user} = storeToRefs(useAuthStore());
 
