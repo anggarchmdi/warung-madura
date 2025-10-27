@@ -1,11 +1,8 @@
 <template>
   <div class="">
-    <!-- <router-link to="/" class="link">Home</router-link>
-    <router-link to="/" class="link">User</router-link> -->
-    <!-- <div class="link" @click="authStore.logout()">Logout</div> -->
     <Navbar />
   </div>
-  <div class="p-8 bg-[#EDF0F2]">
+  <div class="px-4 2xl:p-8 bg-[#EDF0F2]">
     <slot />
   </div>
 </template>
