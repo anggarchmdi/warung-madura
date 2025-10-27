@@ -8,6 +8,7 @@ import CartView from '@/views/cart/index.vue'
 import PaymentView from '@/views/payments/index.vue'
 import NotFound from '@/views/notfound/index.vue'
 import ExampleLayout from '@/layouts/ExampleLayout.vue';
+import DesktopOnlyMiddleware from '@/middleware/desktopOnly.middleware.js';
 
 // middleware
 import AuthMiddleware from '@/middleware/auth.middleware.js';
@@ -59,7 +60,7 @@ export default [{
     meta: {
       title: 'add category',
       layout: ExampleLayout,
-      middleware: [AuthMiddleware],
+      middleware: [AuthMiddleware, DesktopOnlyMiddleware],
     },
   },
   {
