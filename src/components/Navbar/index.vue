@@ -115,24 +115,89 @@
     >
       <i class="ri-home-4-line text-2xl"></i>
     </button>
-    <!-- muncul in layer pilihan tambah kategory / tambah produk -->
-     <div class="bg-white relative w-[110px] h-[70px] p-8 -top-2 flex justify-center items-center rounded-xl">
-       <div class="">
-         <button
-         class="bg-blue-600 text-white rounded-2xl w-[100px] h-[50px] flex items-center justify-center shadow-lg transition"
-         @click="goToAddProduct"
-         >
-         <i class="ri-add-line text-3xl"></i>
-        </button>
-      </div>
+    <!-- Tombol Tambah di Mobile -->
+    <div class="bg-white relative w-[110px] h-[70px] p-2 -top-2 flex justify-center items-center rounded-xl">
+      <button
+        class="bg-blue-600 text-white rounded-2xl w-[110px] h-[50px] flex items-center justify-center shadow-lg transition"
+        @click="showAddModal = true"
+      >
+        <i class="ri-add-line text-3xl"></i>
+      </button>
+
+      <!-- Modal Pilihan Tambah -->
+      <transition name="fade">
+        <div
+          v-if="showAddModal"
+          class="fixed inset-0 flex items-end justify-center bg-black bg-opacity-50 z-50 lg:hidden"
+        >
+          <div class="bg-white w-full rounded-t-2xl p-6 shadow-xl">
+            <div class="flex justify-between items-center mb-4">
+              <h2 class="text-lg font-semibold">Tambah Data</h2>
+              <button @click="showAddModal = false" class="text-gray-500 hover:text-gray-700">
+                <i class="ri-close-line text-2xl"></i>
+              </button>
+            </div>
+
+            <div class="flex flex-col gap-3">
+              <button
+                @click="openAddCategory"
+                class="w-full py-3 rounded-lg bg-blue-600 text-white font-medium hover:bg-blue-700 transition"
+              >
+                + Tambah Kategori
+              </button>
+              <button
+                @click="goToAddProduct"
+                class="w-full py-3 rounded-lg border border-gray-300 font-medium hover:bg-gray-100 transition"
+              >
+                + Tambah Produk
+              </button>
+            </div>
+          </div>
+        </div>
+      </transition>
     </div>
+
     <button
       class="flex flex-col items-center w-[110px] text-gray-500 transition"
-      @click="goToAddCategory"
+      @click=""
     >
       <i class="ri-user-line text-2xl"></i>
     </button>
   </div>
+  <!-- Modal Tambah Kategori -->
+<transition name="fade">
+  <div
+    v-if="showAddCategoryModal"
+    class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
+  >
+    <div class="bg-white absolute bottom-0 md:relative w-full md:w-[400px] rounded-t-2xl md:rounded-2xl p-6 shadow-xl">
+      <div class="flex flex-col items-center">
+        <h2 class="text-xl font-semibold mb-4">Tambah Kategori</h2>
+        <input
+          v-model="categoryName"
+          type="text"
+          placeholder="Nama kategori..."
+          class="w-full border rounded-lg p-2 mb-4 focus:ring focus:ring-blue-300 outline-none"
+        />
+
+        <div class="flex justify-between w-full gap-3">
+          <button
+            @click="showAddCategoryModal = false"
+            class="w-1/2 py-2 rounded-lg border border-gray-300 hover:bg-gray-100"
+          >
+            Batal
+          </button>
+          <button
+            @click="addCategory"
+            class="w-1/2 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700"
+          >
+            Simpan
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</transition>
 </template>
 
 <script setup>
@@ -144,8 +209,9 @@ import { storeToRefs } from "pinia";
 import { useCartStore } from "../../stores/home/cart.store";
 import { useProductStore } from "../../stores/home/product.store";
 import Avatar from '../../assets/profil/avatar.jpeg'
-// import { toast } from "vue3-toastify";
-
+const showAddModal = ref(false)
+const showAddCategoryModal = ref(false)
+import { toast } from "vue3-toastify";
 
 const showLeftArrow = ref(false);
 const showRightArrow = ref(false);
@@ -157,6 +223,12 @@ const selectedCategory = ref(null);
 const productStore = useProductStore();
 const search = ref("");
 const categoryContainer = ref(null);
+const categoryName = ref("");
+
+const openAddCategory = () => {
+  showAddModal.value = false
+  showAddCategoryModal.value = true
+}
 
 const scrollLeft = () => {
   categoryContainer.value.scrollBy({ left: -200, behavior: "smooth"});
@@ -222,6 +294,22 @@ const toggleProfileDropdown = () => {
   showProfileDropdown.value = !showProfileDropdown.value;
 };
 
+const addCategory = async () => {
+  if (!categoryName.value.trim()) {
+    toast.error("Nama kategori tidak boleh kosong!");
+    return;
+  }
+
+  try {
+    await categoryStore.submit({ name: categoryName.value });
+    toast.success("Kategori berhasil ditambahkan!");
+    await categoryStore.fetch();
+    categoryName.value = "";
+    showAddCategoryModal.value = false;
+  } catch (err) {
+    toast.error("Gagal menambahkan kategori!");
+  }
+};
 
 const logout = () => {
   setTimeout(() => {
