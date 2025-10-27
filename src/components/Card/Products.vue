@@ -1,5 +1,5 @@
 <template>
-  <div class="border-2 rounded-2xl w-[150px] 2xl:w-[216px] bg-white h-[253px] 2xl:h-[298px]  p-2 relative">
+  <div class="border-2 rounded-2xl w-[170px] 2xl:w-[216px] bg-white h-[253px] 2xl:h-[298px] p-2 relative">
     <div class="w-full overflow-hidden relative ">
       <img :src="img" alt="" class="h-[130px] 2xl:h-[177px] w-[200px] rounded-lg object-cover">
       <button
@@ -15,7 +15,7 @@
     <div class="pt-2">
       <ButtonPrimary
       @click="addToCart"
-      class="flex justify-center 2xl:gap-x-2 items-center 2xl:w-[200px] 2xl:h-[39px] w-[130px] h-[39px] font-medium font-Plus-Jakarta-Sans">
+      class="flex justify-center 2xl:gap-x-2 items-center w-full 2xl:w-[200px] 2xl:h-[39px] h-[39px] font-medium font-Plus-Jakarta-Sans">
       <i class="ri-add-line"></i>
       Keranjang
     </ButtonPrimary>
@@ -26,7 +26,7 @@
         v-if="showDeleteModal"
         class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
       >
-        <div class="bg-white w-[442px] rounded-2xl p-6 shadow-xl">
+        <div class="bg-white absolute md:relative bottom-0 w-[442px] rounded-2xl p-6 shadow-xl">
           <div class="flex flex-col items-center">
             <div class="relative w-16 h-16 bg-Red-100 rounded-full flex justify-center items-center">
               <div

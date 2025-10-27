@@ -8,21 +8,21 @@
       </div>
 
      <div class="flex justify-end ml-auto items-center p-4 pr-8 gap-4">
-      <div class="hidden md:flex">
-        <ButtonPrimary @click="goToAddCategory" class="flex justify-center items-center p-2 h-12">+ Tambah Kategori</ButtonPrimary>
-        <ButtonPrimary @click="goToAddProduct" class="flex justify-center items-center p-2 h-12">+ Tambah Produk</ButtonPrimary>
+      <div class="hidden md:flex gap-4">
+        <ButtonPrimary @click="goToAddCategory" class="flex justify-center items-center p-2 h-10">+ Tambah Kategori</ButtonPrimary>
+        <ButtonPrimary @click="goToAddProduct" class="flex justify-center items-center p-2 h-10">+ Tambah Produk</ButtonPrimary>
       </div>
         <div class="relative">
-          <buttonPrimary @click="goToAddCart" class="flex justify-center items-center 2xl:p-2 2xl:h-12 hover:bg-transparent text-black bg-transparent md:bg-Blue-500">
-            <i class="ri-shopping-cart-line"></i>
-            <span v-if="cartStore.cartItems.length > 0"  class="absolute -top-1 -right-1 bg-red-500 sm:text-black md:text-white text-xs font-bold rounded-full px-1.5 py-0.5" >
+          <buttonPrimary @click="goToAddCart" class="flex justify-center h-0 2xl:w-12 w-0 items-center 2xl:p-2 xl:h-10 hover:bg-transparent md:hover:bg-Blue-600 text-black bg-transparent md:bg-Blue-500">
+            <i class="ri-shopping-cart-line text-black md:text-white"></i>
+            <span v-if="cartStore.cartItems.length > 0"  class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5" >
               {{ cartStore.cartItems.length }}
             </span>
           </buttonPrimary>
         </div>
-          <p v-if="isCart" class="text-xs bg-Blue-50 hidden  h-12 md:flex flex-col justify-center items-center  px-4 rounded-lg text-Blue-500">
+          <p v-if="isCart" class="text-xs bg-Blue-50 hidden  h-12 md:flex justify-center items-center px-4 rounded-lg text-Blue-500">
            Total Tagihan
-           <span class="font-bold ml-2">
+           <span class="font-bold 2xl:ml-2">
              Rp {{ cartStore.totalPrice.toLocaleString() }}
            </span>
           </p>
@@ -64,7 +64,7 @@
          <hr class="border-t border-gray-200 w-full" />
         </div>
         <!-- search -->
-        <div  v-if="isHome" class="w-full h-full px-8 flex flex-col md:flex-row gap-4 items-center">
+        <div  v-if="isHome" class="w-full h-full 2xl:px-8 flex flex-col md:flex-row gap-4 items-center">
           <div class="relative w-full max-w-xs bg-[#EDF0F2] rounded-lg">
             <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-Blue-500 text-[18px]"></i>
             <InputFilter
@@ -73,7 +73,7 @@
             placeholder="Cari nama produk ..." />
           </div>
           <!-- button category -->
-          <div class="w-full h-full flex justify-start px-8 mb-2 md:mb-0 items-center gap-4">
+          <div class="w-full h-full flex justify-start px-8 mb-6 md:mb-0 items-center gap-4">
             <button
             @click="scrollLeft"
             v-if="showLeftArrow"
@@ -105,7 +105,34 @@
             </button>
           </div>
         </div>
+  </div>
+
+  <!-- navigasi bagian bawah -->
+  <div class="lg:hidden fixed bottom-0 left-0 w-full h-[70px] bg-white shadow-md flex justify-around items-center z-50">
+    <button
+      class="flex flex-col items-center w-[110px] text-gray-500 hover:text-blue-600 transition"
+      @click="goToHome"
+    >
+      <i class="ri-home-4-line text-2xl"></i>
+    </button>
+    <!-- muncul in layer pilihan tambah kategory / tambah produk -->
+     <div class="bg-white relative w-[110px] h-[70px] p-8 -top-2 flex justify-center items-center rounded-xl">
+       <div class="">
+         <button
+         class="bg-blue-600 text-white rounded-2xl w-[100px] h-[50px] flex items-center justify-center shadow-lg hover:bg-blue-700 transition"
+         @click="goToAddProduct"
+         >
+         <i class="ri-add-line text-3xl"></i>
+        </button>
+      </div>
     </div>
+    <button
+      class="flex flex-col items-center w-[110px] text-gray-500 hover:text-blue-600 transition"
+      @click="goToAddCategory"
+    >
+      <i class="ri-user-line text-2xl"></i>
+    </button>
+  </div>
 </template>
 
 <script setup>
@@ -117,7 +144,8 @@ import { storeToRefs } from "pinia";
 import { useCartStore } from "../../stores/home/cart.store";
 import { useProductStore } from "../../stores/home/product.store";
 import Avatar from '../../assets/profil/avatar.jpeg'
-import { toast } from "vue3-toastify";
+// import { toast } from "vue3-toastify";
+
 
 const showLeftArrow = ref(false);
 const showRightArrow = ref(false);
