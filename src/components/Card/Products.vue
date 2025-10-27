@@ -1,7 +1,7 @@
 <template>
-  <div class="border-2 rounded-2xl w-[170px] 2xl:w-[216px] bg-white h-[253px] 2xl:h-[298px] p-2 relative">
+  <div class="border-2 rounded-2xl w-[170px] md:w-[185px] lg:w-[200px]  xl:w-[200px] 2xl:w-[230px] bg-white h-[253px] 2xl:h-[298px] p-2 relative">
     <div class="w-full overflow-hidden relative ">
-      <img :src="img" alt="" class="h-[130px] 2xl:h-[177px] w-[200px] rounded-lg object-cover">
+      <img :src="img" alt="" class="h-[130px] 2xl:h-[177px] w-[200px] 2xl:w-[210px] rounded-lg object-cover">
       <button
       title="delete?"
         @click="showDeleteModal = true"
@@ -15,7 +15,7 @@
     <div class="pt-2">
       <ButtonPrimary
       @click="addToCart"
-      class="flex justify-center 2xl:gap-x-2 items-center w-full 2xl:w-[200px] 2xl:h-[39px] h-[39px] font-medium font-Plus-Jakarta-Sans">
+      class="flex justify-center 2xl:gap-x-2 items-center w-full 2xl:h-[39px] h-[39px] font-medium font-Plus-Jakarta-Sans">
       <i class="ri-add-line"></i>
       Keranjang
     </ButtonPrimary>
