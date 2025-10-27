@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center w-full h-screen overflow-hidden">
+  <div class="flex justify-center items-center w-full h-screen 2xl:-mt-20 overflow-hidden">
     <form @submit.prevent="SubmitCategory">
       <CardAddCategory
         v-model:name="form.name"
