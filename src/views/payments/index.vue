@@ -1,6 +1,8 @@
 <template>
-  <div class="w-full h-screen flex justify-center items-center">
-    <CardPayments />
+  <div class="w-full h-screen flex justify-center items-center p-8">
+    <div class="p-8 mx-auto">
+      <CardPayments />
+    </div>
   </div>
 </template>
 
