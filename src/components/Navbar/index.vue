@@ -8,19 +8,19 @@
       </div>
 
      <div class="flex justify-end ml-auto items-center p-4 pr-8 gap-4">
-      <div class="hidden md:flex gap-4">
+      <div class="hidden lg:flex gap-4">
         <ButtonPrimary @click="goToAddCategory" class="flex justify-center items-center p-2 h-10">+ Tambah Kategori</ButtonPrimary>
         <ButtonPrimary @click="goToAddProduct" class="flex justify-center items-center p-2 h-10">+ Tambah Produk</ButtonPrimary>
       </div>
         <div class="relative">
-          <buttonPrimary @click="goToAddCart" class="flex justify-center h-0 2xl:w-12 w-0 items-center 2xl:p-2 xl:h-10 hover:bg-transparent md:hover:bg-Blue-600 text-black bg-transparent md:bg-Blue-500">
-            <i class="ri-shopping-cart-line text-black md:text-white"></i>
+          <buttonPrimary @click="goToAddCart" class="flex justify-center h-0 2xl:w-12 w-0 items-center 2xl:p-2 xl:h-10 hover:bg-transparent lg:hover:bg-Blue-600 text-black bg-transparent lg:bg-Blue-500">
+            <i class="ri-shopping-cart-line text-black lg:text-white"></i>
             <span v-if="cartStore.cartItems.length > 0"  class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full px-1.5 py-0.5" >
               {{ cartStore.cartItems.length }}
             </span>
           </buttonPrimary>
         </div>
-          <p v-if="isCart" class="text-xs bg-Blue-50 hidden  h-12 md:flex justify-center items-center px-4 rounded-lg text-Blue-500">
+          <p v-if="isCart" class="text-xs bg-Blue-50 hidden  h-12 lg:flex justify-center items-center px-4 rounded-lg text-Blue-500">
            Total Tagihan
            <span class="font-bold 2xl:ml-2">
              Rp {{ cartStore.totalPrice.toLocaleString() }}
@@ -77,7 +77,7 @@
             <button
             @click="scrollLeft"
             v-if="showLeftArrow"
-            class="absolute 2xl:left-80 left-0 z-10 bg-white shadow-md p-2 rounded-full">
+            class="absolute md:left-72 2xl:left-80 left-0 z-10 bg-white shadow-md p-2 rounded-full">
               <i class="ri-arrow-left-s-line text-xl text-gray-600"></i>
             </button>
             <div ref="categoryContainer"
