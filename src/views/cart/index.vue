@@ -1,10 +1,10 @@
 <template>
   <div class="w-full h-screen overflow-y-auto">
-    <div class="w-full max-w-5xl mx-auto bg-white p-4 md:p-6 rounded-xl shadow-md mt-24">
-      <h2 class="text-xl md:text-2xl font-semibold mb-4">Keranjang Belanja</h2>
+    <div class="w-full max-w-5xl mx-auto 2xl:p-4 bg-white h-[400px] md:h-[650px] lg:h-[500px] md:p-6 rounded-xl shadow-md mt-24">
+      <h2 class="text-xl md:text-2xl font-semibold mb-4 p-2">Keranjang Belanja</h2>
 
       <!-- Tabel Responsive -->
-      <div class="overflow-x-auto md:overflow-visible">
+      <div class="overflow-y-auto h-80 lg:h-[350px] md:h-[550px]">
         <table class="w-full border-collapse text-sm md:text-base">
           <thead class="hidden md:table-header-group">
             <tr class="border-b text-gray-600">
@@ -85,21 +85,50 @@
           </tbody>
         </table>
       </div>
-
-      <!-- Footer -->
-      <div class="flex flex-col md:flex-row justify-end items-center gap-3 mt-6 ml-auto">
-        <!-- Total mobile -->
-        <h3 class="text-sm font-semibold md:hidden">
-          Total: Rp {{ cartStore.totalPrice.toLocaleString() }}
-        </h3>
-
-        <div class="flex gap-3 w-full md:w-auto justify-end">
+      <!-- desktop -->
+        <div class="hidden lg:flex gap-3 w-full md:w-auto justify-end">
+          <div class="hidden md:flex">
           <RouterLink
-            to="/"
-            class="flex-1 md:flex-none px-5 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-center"
+          to="/"
+          class="flex-1 md:flex-none px-5 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-center"
           >
-            Kembali
-          </RouterLink>
+          Kembali
+        </RouterLink>
+      </div>
+          <button
+            @click="bayar"
+            :disabled="cartStore.cartItems.length === 0"
+            class="flex-1 md:flex-none px-5 py-2 rounded-lg text-white transition-colors"
+            :class="cartStore.cartItems.length === 0
+              ? 'bg-gray-400 cursor-not-allowed'
+              : 'bg-Blue-600 hover:bg-blue-700'"
+          >
+            Bayar
+          </button>
+      </div>
+       </div>
+
+      <div class="flex lg:hidden justify-end items-center gap-3 mt-6 ml-auto bg-white rounded-lg w-full h-[70px]  p-2">
+        <!-- Total mobile -->
+         <div class="w-[700px] h-[47px] bg-Blue-50 border-Green-500 pb-2 pl-2 pt-1 lg:hidden rounded-lg">
+           <h3 class="text-sm font-Plus-Jakarta-Sans text-[12px] text-Blue-400">
+             Total Tagihan
+            </h3>
+            <p class="font-Plus-Jakarta-Sans text-Blue-600 font-semibold">
+              Rp {{ cartStore.totalPrice.toLocaleString() }}
+            </p>
+          </div>
+
+          <!-- mobile -->
+        <div class="flex gap-3 w-full md:w-auto justify-end">
+          <div class="hidden md:flex">
+          <RouterLink
+          to="/"
+          class="flex-1 md:flex-none px-5 py-2 border border-gray-300 rounded-lg hover:bg-gray-100 text-center"
+          >
+          Kembali
+        </RouterLink>
+      </div>
 
           <button
             @click="bayar"
@@ -107,13 +136,13 @@
             class="flex-1 md:flex-none px-5 py-2 rounded-lg text-white transition-colors"
             :class="cartStore.cartItems.length === 0
               ? 'bg-gray-400 cursor-not-allowed'
-              : 'bg-blue-600 hover:bg-blue-700'"
+              : 'bg-Blue-600 hover:bg-blue-700'"
           >
             Bayar
           </button>
         </div>
       </div>
-    </div>
+
   </div>
 </template>
 
