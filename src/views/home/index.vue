@@ -23,9 +23,9 @@
      </div>
 
      <!-- produk diminati mobileview -->
-      <div class="flex flex-col items-center h-[268px] bg-white mb-12 md:hidden">
+      <!-- <div class="flex flex-col items-center h-[268px] bg-white mb-12 md:hidden">
         <h1 class="font-Plus-Jakarta-Sans font-bold text-base text-left ">Diminati pembeli 😍</h1>
-        <!-- slider produk -->
+
         <div class="h-[184px] w-full bg-red-400">
           <Swiper
         :slides-per-view="'auto'"
@@ -49,7 +49,7 @@
         </SwiperSlide>
       </Swiper>
         </div>
-      </div>
+      </div> -->
 
     <!-- card produk -->
     <div class="grid
