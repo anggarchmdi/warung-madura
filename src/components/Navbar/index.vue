@@ -239,7 +239,8 @@ const scrollRight = () => {
 
 onMounted(async () => {
   await categoryStore.fetch();
-
+  await productStore.fetch();
+  productStore.filterProducts(search.value, selectedCategory.value);
   setTimeout(() => {
     updateArrowVisibility();
   }, 300);
