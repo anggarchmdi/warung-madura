@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-screen flex lg:p-6">
     <!-- kiri -->
-    <div class=" flex-col w-3/6 h-full bg-gradient-to-br from-5% from-[#4288F2] to-[#113E82] rounded-[40px] pt-8 hidden md:flex">
+    <div class=" flex-col w-3/6 h-full bg-gradient-to-br from-5% from-[#4288F2] to-[#113E82] rounded-[40px] pt-8 hidden lg:flex">
       <div class="flex-1 rounded-r-xl w-3/5 object-cover bg-center">
         <img :src="Gambar" alt="" class="absolute w-[700px] rounded-r-xl -translate-x-20">
       </div>
