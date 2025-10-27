@@ -110,7 +110,7 @@
   <!-- navigasi bagian bawah -->
   <div class="lg:hidden fixed bottom-0 left-0 w-full h-[70px] bg-white shadow-md flex justify-around items-center z-50">
     <button
-      class="flex flex-col items-center w-[110px] text-gray-500 hover:text-blue-600 transition"
+      class="flex flex-col items-center w-[110px] text-gray-500 transition"
       @click="goToHome"
     >
       <i class="ri-home-4-line text-2xl"></i>
@@ -119,7 +119,7 @@
      <div class="bg-white relative w-[110px] h-[70px] p-8 -top-2 flex justify-center items-center rounded-xl">
        <div class="">
          <button
-         class="bg-blue-600 text-white rounded-2xl w-[100px] h-[50px] flex items-center justify-center shadow-lg hover:bg-blue-700 transition"
+         class="bg-blue-600 text-white rounded-2xl w-[100px] h-[50px] flex items-center justify-center shadow-lg transition"
          @click="goToAddProduct"
          >
          <i class="ri-add-line text-3xl"></i>
@@ -127,7 +127,7 @@
       </div>
     </div>
     <button
-      class="flex flex-col items-center w-[110px] text-gray-500 hover:text-blue-600 transition"
+      class="flex flex-col items-center w-[110px] text-gray-500 transition"
       @click="goToAddCategory"
     >
       <i class="ri-user-line text-2xl"></i>
