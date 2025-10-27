@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[442px] h-[634px] bg-white rounded-2xl shadow-md">
+  <div class="w-[442px] h-[635px]  bg-white rounded-2xl overflow-y-auto shadow-md">
     <!-- Header -->
     <div class="w-full h-[72px] rounded-t-2xl px-6 flex justify-start items-center border-b">
       <h1 class="font-Plus-Jakarta-Sans font-medium text-[20px]">
@@ -70,13 +70,13 @@
     <div class="w-full h-[96px] rounded-b-2xl px-6 flex justify-between items-center border-t">
       <ButtonSecondary
         @click="resetForm"
-        class="2xl:w-[185px] h-[48px] text-[16px] py-2 border-Blue-500 border"
+        class="2xl:w-[185px] w-[130px] h-[48px] text-[16px] py-2 border-Blue-500 border hover:bg-Blue-600 hover:text-white"
       >
         Batal
       </ButtonSecondary>
       <ButtonPrimary
         @click="submitForm"
-        class="2xl:w-[185px] h-[48px] text-[16px]"
+        class="2xl:w-[185px] w-[130px] h-[48px] text-[16px]"
       >
         Tambah
       </ButtonPrimary>
