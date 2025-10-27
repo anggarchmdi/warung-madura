@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[442px] h-[635px]  bg-white rounded-2xl overflow-y-auto shadow-md">
+  <div class="w-[442px] h-[635px] bg-white rounded-2xl overflow-y-auto shadow-md">
     <!-- Header -->
     <div class="w-full h-[72px] rounded-t-2xl px-6 flex justify-start items-center border-b">
       <h1 class="font-Plus-Jakarta-Sans font-medium text-[20px]">
