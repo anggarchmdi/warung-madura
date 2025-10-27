@@ -1,6 +1,6 @@
 <template>
-  <div class="w-[442px] h-[452px] flex flex-col justify-center items-center gap-y-8 bg-white px-6 rounded-2xl">
-    <div class="flex flex-col justify-center items-center w-[394px] h-[219px] ">
+  <div class="2xl:w-[442px] h-[452px] flex flex-col justify-center items-center gap-y-8 md:bg-white bg-transparent px-6 rounded-2xl">
+    <div class="flex flex-col justify-center items-center w-[200px] h-[219px] ">
       <!-- animasi payment -->
       <Vue3Lottie
         :animationData="paymentAnimation"
@@ -18,7 +18,7 @@
         <p class="font-Plus-Jakarta-Sans text-base text-Grayscale-400">{{ currentDate }}</p>
       </div>
       <div class="pt-4 bottom-3">
-        <ButtonPrimary @click="goToHome" class="w-[394px] h-[48px] font-Plus-Jakarta-Sans text-xs">
+        <ButtonPrimary @click="goToHome" class="w-full h-[48px] font-Plus-Jakarta-Sans text-xs">
       <i class="ri-arrow-left-line mr-2"></i>
           Kembali
       </ButtonPrimary>
